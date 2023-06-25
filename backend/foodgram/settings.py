@@ -12,7 +12,7 @@ DEBUG = (os.getenv('DEBUG', 'False') == 'True')
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-#AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
