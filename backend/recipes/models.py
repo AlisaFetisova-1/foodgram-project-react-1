@@ -78,7 +78,7 @@ class Recipe(models.Model):
         Tag,
         related_name='recipes'
     )
-    cooking_time = models.IntegerField(
+    cooking_time = models.PositiveSmallIntegerField(
         'Время приготовления в минутах',
         validators=[
             MinValueValidator(
@@ -112,7 +112,7 @@ class IngredientInRecipe(models.Model):
         related_name='IngredientsInRecipe',
         on_delete=models.CASCADE
     )
-    amount = models.IntegerField(
+    amount = models.PositiveSmallIntegerField(
         'Колличество ингредиента в данном рецепте.',
         validators=[
             MinValueValidator(

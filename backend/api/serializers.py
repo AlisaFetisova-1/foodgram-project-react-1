@@ -320,10 +320,8 @@ class RecipePostSerializer(serializers.ModelSerializer):
         instance.tags.clear()
         instance.tags.add(*tags)
         instance.ingredients.clear()
-        recipe = instance
-        self.save_ingredients(recipe, ingredients)
-        instance.save()
-        return instance
+        self.save_ingredients(ingredients)
+        return super().update(instance, validated_data)
 
     def to_representation(self, instance):
         serializer = RecipeGetSerializer(
