@@ -61,9 +61,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
  }
 
@@ -109,7 +109,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PAGINATION_CLASS': 'api.pagination.CustomPagination', 
+    'DEFAULT_PAGINATION_CLASS': 'api.pagination.CustomPagination',
     'NON_FIELD_ERRORS_KEY': 'errors',
 }
 

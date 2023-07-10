@@ -3,6 +3,7 @@ from rest_framework import permissions
 
 User = get_user_model()
 
+
 class IsAuthorOrAdminOrReadOnly(permissions.BasePermission):
     """Права доступа только у автора или админа."""
     def has_permission(self, request, view):
