@@ -12,6 +12,7 @@ class User(AbstractUser):
     USER = 'user'
     ADMIN = 'admin'
 
+
     email = models.EmailField(
         'email',
         max_length=254,
@@ -28,9 +29,15 @@ class User(AbstractUser):
         max_length=150,
         blank=False
     )
+    
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'last_name', 'first_name', ]
+
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
+        ordering = ["id"]
 
 
 class Subscription(models.Model):

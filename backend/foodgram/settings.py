@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = (os.getenv('DEBUG', 'False') == 'True')
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-    'colorfield',
     'django_filters',
 ]
 
@@ -62,15 +61,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', 'foodgram'),
-        'USER': os.getenv('POSTGRES_USER', 'foodgram_user'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'foodgram_password'),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-        'PORT': os.getenv('DB_PORT', '5432')
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+ }
 
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -109,18 +104,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
+        #'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.renderers.JSONRenderer',
         'rest_framework.permissions.AllowAny',
+        #'rest_framework.authentication.SessionAuthentication',
     ],
-
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
     ],
-    'DEFAULT_PAGINATION_CLASS': 'api.pagination.CustomPagination',
+    'DEFAULT_PAGINATION_CLASS': 'api.pagination.CustomPagination', 
     'NON_FIELD_ERRORS_KEY': 'errors',
 }
 
 DJOSER = {
+    #'LOGIN_FIELD': 'email',
     'HIDE_USERS': False,
+    #'PASSWORD_CHANGED_EMAIL_CONFIRMATION': False,
+    #'TOKEN_MODEL': 'rest_framework.authtoken.models.Token',
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
