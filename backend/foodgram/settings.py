@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['158.160.27.211','localhost','127.0.0.1']
 
 AUTH_USER_MODEL = 'users.User'
 
