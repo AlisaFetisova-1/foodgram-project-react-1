@@ -167,7 +167,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 class RecipeGetSerializer(serializers.ModelSerializer):
     '''Сериализатор для модели Recipe.
- Для GET запросов к эндпоинтам /recipe/ и /recipe/id/.
+    Для GET запросов к эндпоинтам /recipe/ и /recipe/id/.
     '''
     tags = TagSerializer(many=True, read_only=True)
     author = UserGetSerializer()
@@ -317,7 +317,6 @@ class RecipePostSerializer(serializers.ModelSerializer):
         )
         ingredients = validated_data.pop('IngredientsInRecipe')
         tags = validated_data.pop('tags')
-        instance.tags.clear()
         instance.tags.add(*tags)
         instance.ingredients.clear()
         self.save_ingredients(ingredients)

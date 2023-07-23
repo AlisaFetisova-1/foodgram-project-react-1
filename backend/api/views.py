@@ -21,7 +21,7 @@ from .serializers import (IngredientSerializer, TagSerializer,
                           UserPostSerializer, SubscriptionSerializer,
                           UserWithRecipesSerializer)
 from .filters import RecipeFilter, IngredientFilter
-from .permissions import IsAuthorOrAdminOrReadOnly
+from .permissions import IsAuthorOrReadOnly
 from .pagination import CustomPagination
 from .utils import post_and_delete_action
 
@@ -139,7 +139,7 @@ class CustomUserViewSet(
     @action(
         ["POST", "DELETE"],
         detail=True,
-        permission_classes=[IsAuthorOrAdminOrReadOnly],
+        permission_classes=[IsAuthorOrReadOnly],
     )
     def subscribe(self, request, **kwargs):
         return post_and_delete_action(
@@ -194,7 +194,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
     GET запрос: скачать список покупок.
     """
     queryset = Recipe.objects.all()
-    permission_classes = [IsAuthorOrAdminOrReadOnly, ]
+    permission_classes = [IsAuthorOrReadOnly, ]
     filter_backends = (DjangoFilterBackend, )
     filterset_class = RecipeFilter
     pagination_class = CustomPagination
